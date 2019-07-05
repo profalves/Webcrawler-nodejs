@@ -16,14 +16,19 @@ request(URL, function (err, res, body) {
 		let rating = $(this).find('.imdbRating strong').text().trim();
 
 		movies.push({
-			movie: title,
-			rating: rating
+			"movie": title,
+			"rating": rating
 		})
 
 	})
 
-	// console.log(movies);
+	movies = JSON.stringify(movies)
 
-	fs.appendFile('data.json', movies);
+	console.log(movies)
+
+	fs.appendFile('data.json', movies, function (err, result) {
+		if (err) console.log('error', err);
+		console.log('result', result)
+	});
 
 });
